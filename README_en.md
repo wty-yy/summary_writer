@@ -15,7 +15,7 @@ Modified based on [GitHub - tensorboard_logger](https://github.com/RustingSword/
     2. Link files and CMake files are installed in `/usr/local/share/tensorboard_logger/[lib, cmake]`.
 
 ## Installation
-If you want to modify the installation location (the default is `/usr/local/`):
+The default installation location is `/usr/local/`:
 ```bash
 mkdir build
 cd build

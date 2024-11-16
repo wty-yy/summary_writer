@@ -15,7 +15,7 @@
     2. 链接文件和CMake文件在`/usr/local/share/tensorboard_logger/[lib,cmake]`文件夹下
 
 ## 安装
-如果要修改安装位置（默认安装位置为`/usr/local/`下）
+默认安装位置为`/usr/local/`下
 ```bash
 mkdir build
 cd build
