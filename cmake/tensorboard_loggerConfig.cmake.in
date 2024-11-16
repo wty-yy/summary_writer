@@ -2,3 +2,6 @@
 
 include("${CMAKE_CURRENT_LIST_DIR}/@PROJECT_NAME@Targets.cmake")
 check_required_components("@PROJECT_NAME@")
+
+set_and_check(TENSORBOARD_LOGGER_LIBRARIES "@TENSORBOARD_LOGGER_LIBRARIES@")
+

@@ -12,9 +12,6 @@
 #include "crc.h"
 #include "event.pb.h"
 
-using tensorflow::Event;
-using tensorflow::Summary;
-
 // extract parent dir or basename from path by finding the last slash
 std::string get_parent_dir(const std::string &path);
 std::string get_basename(const std::string &path);
@@ -54,7 +51,7 @@ class TensorBoardLogger {
     explicit TensorBoardLogger(const std::string &log_file,
                                const TensorBoardLoggerOptions &options={}) {
         this->options = options;
-        auto basename = get_basename(log_file);
+        auto basename = get_basename(log_file);  // get filename
         if (basename.find("tfevents") == std::string::npos) {
             throw std::runtime_error(
                 "A valid event file must contain substring \"tfevents\" in its "
@@ -188,8 +185,8 @@ class TensorBoardLogger {
 
    private:
     int generate_default_buckets();
-    int add_event(int64_t step, Summary *summary);
-    int write(Event &event);
+    int add_event(int64_t step, tensorflow::Summary *summary);
+    int write(tensorflow::Event &event);
     void flusher();
 
     std::string log_dir_;

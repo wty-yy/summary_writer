@@ -147,7 +147,7 @@ int test_log(const char* log_file) {
 int main(int argc, char* argv[]) {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
 
-    int ret = test_log("./demo/tfevents.pb");
+    int ret = test_log("../demo/tfevents.pb");
     assert(ret == 0);
 
     // Optional:  Delete all global objects allocated by libprotobuf.

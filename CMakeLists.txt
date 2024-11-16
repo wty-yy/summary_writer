@@ -32,7 +32,8 @@ PUBLIC
 target_link_libraries(tensorboard_logger PUBLIC ${Protobuf_LIBRARIES})
 
 if (BUILD_TEST)
-    add_executable(tensorboard_logger_test tests/test_tensorboard_logger.cc)
+    # add_executable(tensorboard_logger_test tests/test_tensorboard_logger.cc)
+    add_executable(tensorboard_logger_test tests/test_summary_writer.cc)
     target_compile_features(tensorboard_logger_test PRIVATE cxx_std_11)
     target_compile_options(tensorboard_logger_test PRIVATE -Wall -O2)
     target_include_directories(tensorboard_logger_test
@@ -49,39 +50,41 @@ endif()
 install(
     TARGETS tensorboard_logger
     EXPORT tensorboard_logger_Targets
-    ARCHIVE DESTINATION lib
-    LIBRARY DESTINATION lib
-    INCLUDES DESTINATION include
+    ARCHIVE DESTINATION share/tensorboard_logger/lib
+    LIBRARY DESTINATION share/tensorboard_logger/lib
+    INCLUDES DESTINATION include/tensorboard_logger
 )
+
+set(TENSORBOARD_LOGGER_LIBRARIES "${CMAKE_INSTALL_PREFIX}/share/tensorboard_logger/lib/libtensorboard_logger.a")
 
 include(CMakePackageConfigHelpers)
 configure_package_config_file(
     "${PROJECT_SOURCE_DIR}/cmake/tensorboard_loggerConfig.cmake.in"
     "${PROJECT_BINARY_DIR}/tensorboard_loggerConfig.cmake"
     INSTALL_DESTINATION
-    ${CMAKE_INSTALL_PREFIX}/cmake
+    ${CMAKE_INSTALL_PREFIX}/share/tensorboard_logger/cmake
 )
 
 install(
     EXPORT tensorboard_logger_Targets
     FILE tensorboard_loggerTargets.cmake
     NAMESPACE tensorboard_logger::
-    DESTINATION ${CMAKE_INSTALL_PREFIX}/cmake
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/share/tensorboard_logger/cmake
 )
 
 install(
     FILES "${PROJECT_BINARY_DIR}/tensorboard_loggerConfig.cmake"
-    DESTINATION ${CMAKE_INSTALL_PREFIX}/cmake
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/share/tensorboard_logger/cmake
 )
 
 install(
     DIRECTORY include/
-    DESTINATION include
+    DESTINATION include/tensorboard_logger
 )
 
 install(
     DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/"
-    DESTINATION include
+    DESTINATION include/tensorboard_logger
     FILES_MATCHING
     PATTERN "*.pb.h"
     PATTERN "CMakeFiles" EXCLUDE
