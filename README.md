@@ -15,6 +15,8 @@
     2. 链接文件和CMake文件在`/usr/local/share/tensorboard_logger/[lib,cmake]`文件夹下
 
 ## 安装
+依赖Protobuf库：`apt-get install libprotobuf-dev protobuf-compiler` (Ubuntu)
+
 默认安装位置为`/usr/local/`下
 ```bash
 mkdir build

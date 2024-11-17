@@ -15,6 +15,8 @@ Modified based on [GitHub - tensorboard_logger](https://github.com/RustingSword/
     2. Link files and CMake files are installed in `/usr/local/share/tensorboard_logger/[lib, cmake]`.
 
 ## Installation
+Only dependency Protobuf library: `apt-get install libprotobuf-dev protobuf-compiler` (Ubuntu)
+
 The default installation location is `/usr/local/`:
 ```bash
 mkdir build
